@@ -1,0 +1,62 @@
+File 1: raw_engine/__init__.py
+python
+Copy
+Edit
+# raw_engine/__init__.py - Initializes the RawAI engine module
+
+from .agent import Agent
+from .manager import Manager
+from .config import Config
+File 2: raw_engine/agent.py
+python
+Copy
+Edit
+# raw_engine/agent.py - Defines the individual agents for the RawAI engine
+
+class Agent:
+    def __init__(self, name, expertise):
+        self.name = name
+        self.expertise = expertise
+
+    def process(self, task):
+        return f"Agent {self.name} ({self.expertise}) is processing: {task}"
+File 3: raw_engine/manager.py
+python
+Copy
+Edit
+# raw_engine/manager.py - Manages and coordinates multiple agents
+
+from .agent import Agent
+
+class Manager:
+    def __init__(self):
+        self.agents = []
+
+    def add_agent(self, agent):
+        self.agents.append(agent)
+
+    def process_task(self, task):
+        results = []
+        for agent in self.agents:
+            results.append(agent.process(task))
+        return results
+File 4: raw_engine/config.py
+python
+Copy
+Edit
+# raw_engine/config.py - Configuration settings for the RawAI engine
+
+class Config:
+    def __init__(self, config_dict):
+        self.settings = config_dict
+
+    def get(self, key, default=None):
+        return self.settings.get(key, default)
+File 5: raw_engine/utils.py
+python
+Copy
+Edit
+# raw_engine/utils.py - Utility functions for the RawAI engine
+
+def log(message):
+    print(f"[LOG]: {message}")
